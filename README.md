@@ -1,1 +1,4 @@
 # miata-voting
+
+Authors: 
+Bandith
