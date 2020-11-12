@@ -11,14 +11,14 @@ import {
   refreshVoters,
 } from "../actions/votersActions";
 import { VoterTable } from "../components/VoterTable";
-import { VoterToolState } from "../models/voterStore";
+import {MiataVotingState} from "../models/miataVotingStore";
 
 export function VoterTableContainer() {
-  const stateProps = useSelector((state: VoterToolState) => {
+  const stateProps = useSelector((state: MiataVotingState) => {
     return {
       unsortedVoters: state.voters,
-      editVoterId: state.editVoterId,
-      votersSort: state.votersSort,
+      editVoterId: state.voters.editVoterId,
+      votersSort: state.voters.votersSort,
     };
   });
 
