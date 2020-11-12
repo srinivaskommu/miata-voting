@@ -10,13 +10,7 @@ export type VoterRegistrationProps = {
 
 export function VoterRegistration(props:VoterRegistrationProps) {
 
-  const registerVoter = () => {
-    let b =  1;
-  };
 
-  const showVoters = () => {
-    let c = 1;
-  };
 
   return (
     <>
@@ -24,12 +18,11 @@ export function VoterRegistration(props:VoterRegistrationProps) {
       <h1>Voter Registration</h1>
     </header>
     <body>
-      <button onClick={registerVoter}>Register Voter</button>
-      <button onClick={showVoters}>Show Voters</button>
+      <button>Register Voter</button>
+      <button>Show Voters</button>
 
       <VoterRegistrationForm></VoterRegistrationForm>
-      <VoterTable></VoterTable>
-
+     
     </body>
     </>
   );
