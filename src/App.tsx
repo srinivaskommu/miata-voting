@@ -5,7 +5,7 @@ import {Link, Switch, Route} from "react-router-dom";
 import {VoterRegistration} from "./components/VoterRegistration";
 import {Home} from "./components/Home";
 import {Vote} from "./components/Vote";
-import {Election} from "./components/Election";
+import {ElectionForm} from "./components/ElectionForm";
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
               <Link to="/voter-registration">Voter Registration</Link>
             </li>
             <li>
-              <Link to="/elections">Create Elections</Link>
+              <Link to="/elections">Elections</Link>
             </li>
             <li>
               <Link to="/vote">Vote</Link>
@@ -33,7 +33,7 @@ function App() {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/voter-registration" component={VoterRegistration} />
-            <Route path="/elections" component={Election} />
+            <Route path="/elections" component={ElectionForm} />
             <Route path="/vote" component={Vote} />
           </Switch>
         </main>
