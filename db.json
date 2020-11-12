@@ -1,7 +1,51 @@
 {
-  "colors": [
-    { "id": 1, "name": "red", "hexcode": "#ff0000" },
-    { "id": 2, "name": "green", "hexcode": "#00ff00" },
-    { "id": 3, "name": "blue", "hexcode": "#0000ff" }
+  "voters": [
+    {
+      "id": 100,
+      "firstName": "Yason",
+      "lastName": "Khaburzaniya"
+    }
+  ],
+  "elections": [
+    {
+      "id": 1,
+      "name": "Pet election",
+      "questions": [
+        {
+          "id": 1,
+          "title": "Are dogs better than cats?"
+        },
+        {
+          "id": 2,
+          "title": "Are birds smarter?"
+        }
+      ]
+    }
+  ],
+  "ballots": [
+    {
+      "id": 1,
+      "voterId": 100,
+      "electionId": 1
+    }
+  ],
+  "ballotAnswers": [
+    {
+      "id": 1,
+      "electionId": 1,
+      "answers": [
+        {
+          "questionId": 1,
+          "title": "Are dogs better than cats?",
+          "answer": true
+        },
+        {
+          "questionId": 1,
+          "title": "Are birds smarter?",
+          "answer": true
+        }
+      ]
+    }
   ]
 }
+
