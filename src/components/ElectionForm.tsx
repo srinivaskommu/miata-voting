@@ -22,12 +22,43 @@ export function ElectionForm() {
                     e.target.type === "number" ? Number(e.target.value) : e.target.value,}
         );
     }
+
+    const tempElection = [
+            {
+                id: 1,
+                name: "Pet election",
+                questions: [
+                    {
+                        id: 1,
+                        title: "Are dogs better than cats?"
+                    },
+                    {
+                        id: 2,
+                        title: "Are birds smarter?"
+                    }
+                ]
+            },
+        {
+            id: 2,
+            name: "Pet election",
+            questions: [
+                {
+                    id: 1,
+                    title: "Are dogs better than cats?"
+                },
+                {
+                    id: 2,
+                    title: "Are birds smarter?"
+                }
+            ]
+        },
+    ];
     return (
         <header>
             <h1>
                 Available Election Results
             </h1>
-            <ElectionResultTable></ElectionResultTable>
+            <ElectionResultTable elections={tempElection}></ElectionResultTable>
             {electionForm.showElectionQuestionFrom &&
                 <ElectionQuestionFrom numQuestion={electionForm.numberOfQuestions} onClose={closeCreateElection}></ElectionQuestionFrom>}
             { !electionForm.showElectionQuestionFrom &&
