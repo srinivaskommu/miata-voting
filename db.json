@@ -3,7 +3,8 @@
     {
       "id": 100,
       "firstName": "Yason",
-      "lastName": "Khaburzaniya"
+      "lastName": "Khaburzaniya",
+      "email": "yason@example.com"
     }
   ],
   "elections": [

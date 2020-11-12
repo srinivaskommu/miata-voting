@@ -2,9 +2,9 @@ import {Ballot, Election, Voter} from "./elections";
 
 export type BallotToolState = {
     elections: Election[],
-    election: Election,
-    voter: Voter,
-    ballot: Ballot,
+    electionId: number,
+    voterId: number,
+    ballotId: number,
 }
 
 export type MiataVotingState = {
