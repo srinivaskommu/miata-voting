@@ -1,5 +1,5 @@
 # miata-voting
 
 Authors: 
-Bandith
-Srinivas
+Bandith,
+Srinivas,Yason
