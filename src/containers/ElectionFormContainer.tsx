@@ -7,7 +7,7 @@ import {
     createCloseElectionRequestAction, createCreateElectionRequestAction,
     refreshElections
 } from "../actions/electionsAction";
-import {ElectionQuestionForm} from "../components/ElectionQuestionForm";
+import {ElectionForm} from "../components/ElectionForm";
 
 export function ElectionFormContainer() {
     const stateProps = useSelector((state: MiataVotingState) => {
@@ -29,5 +29,5 @@ export function ElectionFormContainer() {
     useEffect(() => {
         refreshElections()(dispatch);
     }, [dispatch]);
-    return <ElectionQuestionForm {...stateProps} {...boundActionProps}/>
+    return <ElectionForm {...stateProps} {...boundActionProps}/>
 }

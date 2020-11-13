@@ -1,7 +1,7 @@
 import React, {ChangeEvent, useState} from "react";
 import {NewElection} from "../models/elections";
 
-export type ElectionQuestionFormProps = {
+export type ElectionFormProps = {
     numQuestions: number,
     onAddElection: (newElection: NewElection) => void,
     onClose: () => void,
@@ -9,16 +9,12 @@ export type ElectionQuestionFormProps = {
 }
 
 
-export function ElectionQuestionForm(props: ElectionQuestionFormProps) {
+export function ElectionForm(props: ElectionFormProps) {
     const [electionQuestionForm, setElectionQuestionForm] = useState({
         numberOfQuestions: 0,
         name: "",
-        question: ""
+        question: "",
     });
-
-    const createElection = () => {
-        props.onCreateElection(electionQuestionForm.numberOfQuestions);
-    }
 
     const addElection = () => {
         const tempQuestions = {id: 1, title: electionQuestionForm.question}
@@ -40,18 +36,6 @@ export function ElectionQuestionForm(props: ElectionQuestionFormProps) {
     console.log(props.numQuestions);
     console.log("name: " + electionQuestionForm.name);
     return (<>
-        {props.numQuestions < 1 && <div>
-            <label htmlFor="question-number-input">Number of election questions</label>
-            <input
-                type="text"
-                id="question-number-input"
-                name="numberOfQuestions"
-                value={electionQuestionForm.numberOfQuestions}
-                onChange={change}>
-            </input>
-            <button type="button" onClick={() => props.onCreateElection(electionQuestionForm.numberOfQuestions)}>Create Election</button>
-        </div>}
-        {props.numQuestions > 0 &&
             <div>
             <form>
                 <div>
@@ -77,6 +61,5 @@ export function ElectionQuestionForm(props: ElectionQuestionFormProps) {
             </form>
             <button type="button" onClick={addElection}>Add Election</button>
             </div>
-        }
         </>);
 }
