@@ -257,4 +257,5 @@ export type BallotsActions =
     | RefreshElectionsDoneAction
     | SelectElectionAction
     | FetchBallotDoneAction
-    | ChangeAnswerAction;
+    | ChangeAnswerAction
+    | SubmitBallotDoneAction;

@@ -4,7 +4,7 @@ import {
     BallotsActions, isChangeAnswerAction,
     isFetchBallotDoneAction,
     isRefreshElectionsDoneAction,
-    isSelectElectionAction
+    isSelectElectionAction, isSubmitBallotDoneAction
 } from "../actions/ballotsActions";
 
 const electionsReducer: Reducer<Election[], BallotsActions> = (elections = [], action) => {
@@ -17,28 +17,32 @@ const electionsReducer: Reducer<Election[], BallotsActions> = (elections = [], a
 };
 
 const electionReducer: Reducer<number, BallotsActions> = (electionId = -1, action) => {
-    if(isSelectElectionAction(action)) {
+    if (isSelectElectionAction(action)) {
         return action.payload.electionId
+    } else if (isSubmitBallotDoneAction(action)) {
+        return -1;
     } else {
         return electionId;
     }
 };
 
 const voterReducer: Reducer<number, BallotsActions> = (voterId = -1, action) => {
-    if(isFetchBallotDoneAction(action)) {
+    if (isFetchBallotDoneAction(action)) {
         return action.payload.voterId;
+    } else if (isSubmitBallotDoneAction(action)) {
+        return -1;
     } else {
         return voterId;
     }
 };
 
-const answersReducer: Reducer<Answer[], BallotsActions> = (answers= [], action) => {
+const answersReducer: Reducer<Answer[], BallotsActions> = (answers = [], action) => {
     console.log(action);
-    if(isChangeAnswerAction(action)) {
+    if (isChangeAnswerAction(action)) {
         console.log(answers);
         const newAnswers = [...action.payload.answers];
         const index = newAnswers.findIndex((answer) => answer.id === action.payload.questionId);
-        const newAnswer = {...newAnswers[index]} ;
+        const newAnswer = {...newAnswers[index]};
         newAnswer.answer = action.payload.value;
         newAnswers[index] = newAnswer;
         return newAnswers;
