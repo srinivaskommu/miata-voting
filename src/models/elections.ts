@@ -10,12 +10,6 @@ export type Election = {
     questions: Question[]
 }
 
-export type Voter = {
-    id: number,
-    firstName: string,
-    lastName: string,
-}
-
 export type Ballot = {
     id: number,
     voterId: number,

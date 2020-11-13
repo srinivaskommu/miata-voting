@@ -9,7 +9,8 @@ export const REPLACE_VOTER_REQUEST_ACTION = "REPLACE_VOTER_REQUEST";
 export const REMOVE_VOTER_REQUEST_ACTION = "REMOVE_VOTER_REQUEST";
 export const EDIT_VOTER_ACTION = "EDIT_VOTER";
 export const CANCEL_VOTER_ACTION = "CANCEL_VOTER";
-export const SORT_VOTERS_ACTION = "SORT_VOTERS";
+export const SELECT_REGISTER_ACTION = 'SELECT_REGISTER_ACTION';
+
 
 export type RefreshVotersRequestAction = Action<
   typeof REFRESH_VOTERS_REQUEST_ACTION
@@ -102,7 +103,8 @@ export const appendVoter = (voter: NewVoter) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(voter),
     }).then(() => {
-      refreshVoters()(dispatch);
+      // refreshVoters()(dispatch);
+      dispatch(createSelectElectionAction("HOME"));
     });
   };
 };
@@ -224,28 +226,28 @@ export const createCancelVoterAction: CreateCancelVoterAction = () => {
   };
 };
 
-export interface SortVotersAction extends Action<typeof SORT_VOTERS_ACTION> {
+export interface SelectRegisterAction extends Action<typeof SELECT_REGISTER_ACTION> {
   payload: {
-    sortCol: keyof Voter;
-  };
+      isRegister: string,
+  },
 }
 
-export function isSortVotersAction(action: AnyAction): action is SortVotersAction {
-  return action.type === SORT_VOTERS_ACTION;
+export function isSelectElectionAction(action: AnyAction): action is SelectRegisterAction {
+  return action.type === SELECT_REGISTER_ACTION;
 }
 
-export type CreateSortVotersAction = (sortCol: keyof Voter) => SortVotersAction;
+export type CreateSelectElectionAction = (isRegister: string) => SelectRegisterAction;
 
-export const createSortVotersAction: CreateSortVotersAction = (
-  sortCol: keyof Voter
-) => {
+export const createSelectElectionAction: CreateSelectElectionAction = (isRegister) => {
   return {
-    type: SORT_VOTERS_ACTION,
-    payload: {
-      sortCol,
-    },
+      type: SELECT_REGISTER_ACTION,
+      payload: {
+        isRegister:isRegister,
+      },
   };
 };
+
+
 
 export type VoterActions =
   | RefreshVotersRequestAction
@@ -255,4 +257,4 @@ export type VoterActions =
   | RemoveVoterRequestAction
   | EditVoterAction
   | CancelVoterAction
-  | SortVotersAction;
+  | SelectRegisterAction;

@@ -19,7 +19,5 @@ export function VoterFormContainer() {
     [dispatch]
   );
 
-  //return <VoterForm buttonText="Add Voter" {...boundActionProps} />;
-
-  return <VoterForm />;
+  return <VoterForm {...boundActionProps}/>;
 }
