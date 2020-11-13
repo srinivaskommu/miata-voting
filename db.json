@@ -4,6 +4,16 @@
       "id": 100,
       "firstName": "Yason",
       "lastName": "Khaburzaniya"
+    },
+    {
+      "firstName": "b",
+      "lastName": "b",
+      "dob": "",
+      "email": "bandith_phommounivong@intuit.com",
+      "phone": "9515999369",
+      "address": "35828 Lexi Lane",
+      "county": "CA",
+      "id": 101
     }
   ],
   "elections": [
@@ -414,9 +424,21 @@
   ],
   "ballots": [
     {
-      "id": 1,
-      "voterId": 100,
-      "electionId": 1
+      "voterId": 101,
+      "electionId": 1,
+      "answers": [
+        {
+          "id": 1,
+          "title": "Are dogs better than cats?",
+          "answer": true
+        },
+        {
+          "id": 2,
+          "title": "Are birds smarter?",
+          "answer": true
+        }
+      ],
+      "id": 1
     }
   ],
   "ballotAnswers": [

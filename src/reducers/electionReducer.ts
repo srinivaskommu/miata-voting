@@ -1,5 +1,5 @@
 import {combineReducers, Reducer} from "redux";
-import {BallotAnswer, Election, Question} from "../models/elections";
+import {Ballot, BallotAnswer, Election, Question} from "../models/elections";
 import {
     ElectionsActions, isAddQuestionRequestAction,
     isCloseElectionRequestAction, isFetchBallotAnswerDoneAction,
@@ -28,7 +28,7 @@ const questionReducer: Reducer<Question[], ElectionsActions> = (questions = [], 
     return newQuestions;
 };
 
-const resultsReducer: Reducer<BallotAnswer[], ElectionsActions> = (ballotAnswers= [], action) => {
+const resultsReducer: Reducer<BallotAnswer[], ElectionsActions> = (ballots = [], action) => {
 
 
 
@@ -38,10 +38,11 @@ const resultsReducer: Reducer<BallotAnswer[], ElectionsActions> = (ballotAnswers
     // }
 
     if (isFetchBallotAnswerDoneAction(action)) {
-        console.log(action.payload.ballotAnswers);
-        return action.payload.ballotAnswers;
+        console.log("resultReducer: ");
+        console.log(action.payload.ballots);
+        return action.payload.ballots;
     }
-    return ballotAnswers;
+    return ballots;
 
 };
 

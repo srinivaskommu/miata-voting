@@ -4,9 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 import {ElectionResultTable} from "../components/ElectionResultTable";
 import {MiataVotingState} from "../models/miataVotingStore";
 import {createShowResultRequestAction, fetchBallotAnswers, refreshElections} from "../actions/electionsAction";
-import {BallotAnswer, Election, Question, ResultCount,} from "../models/elections";
+import {Ballot, BallotAnswer, Election, Question, ResultCount,} from "../models/elections";
 
-const computeResult = (answers: BallotAnswer[]) => {
+const computeResult = (answers: Ballot[]) => {
     // answers.forEach(ar)
     // return answers.reduce((result, entry) => {
     //
@@ -22,7 +22,7 @@ const computeResult = (answers: BallotAnswer[]) => {
     return sums;
 };
 
-const sumQuestion = (answers: BallotAnswer[], idx: number) => {
+const sumQuestion = (answers: Ballot[], idx: number) => {
     return answers.reduce((total, entry) => {
         return total + (entry.answers[idx].answer ? 1 : 0);
     }, 0);
@@ -31,7 +31,7 @@ const sumQuestion = (answers: BallotAnswer[], idx: number) => {
 export function ElectionTableContainer() {
     const stateProps = useSelector((state: MiataVotingState) => {
         return {elections: state.elections.elections, results: state.elections.results};
-    }) as {resultsCount: ResultCount[]; elections: Election[]; results: BallotAnswer[];}
+    }) as {resultsCount: ResultCount[]; elections: Election[]; results: Ballot[];}
 
     const resultCount = computeResult(stateProps.results);
     stateProps.resultsCount = resultCount;

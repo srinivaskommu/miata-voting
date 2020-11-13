@@ -1,5 +1,5 @@
 import {Action, AnyAction, Dispatch} from "redux";
-import {BallotAnswer, Election, NewElection, NewQuestion} from "../models/elections";
+import {Ballot, BallotAnswer, Election, NewElection, NewQuestion} from "../models/elections";
 import {Voter} from "../models/voters";
 import {FETCH_BALLOT_DONE_ACTION} from "./ballotsActions";
 
@@ -178,7 +178,7 @@ export const createShowResultRequestAction: CreateShowResultRequestAction = (ele
 
 export interface FetchBallotAnswerDoneAction extends Action<typeof FETCH_BALLOT_ANSWER_DONE_REQUEST_ACTION> {
     payload: {
-        ballotAnswers: BallotAnswer[]
+        ballots: Ballot[]
     },
 }
 
@@ -186,13 +186,13 @@ export function isFetchBallotAnswerDoneAction(action: AnyAction): action is Fetc
     return action.type === FETCH_BALLOT_ANSWER_DONE_REQUEST_ACTION;
 }
 
-export type CreateFetchBallotAnswerDoneAction = (ballotAnswers: BallotAnswer[]) => FetchBallotAnswerDoneAction;
+export type CreateFetchBallotAnswerDoneAction = (ballots: Ballot[]) => FetchBallotAnswerDoneAction;
 
-export const createFetchBallotAnswerDoneAction: CreateFetchBallotAnswerDoneAction = (ballotAnswers: BallotAnswer[]) => {
+export const createFetchBallotAnswerDoneAction: CreateFetchBallotAnswerDoneAction = (ballots: Ballot[]) => {
     return {
         type: FETCH_BALLOT_ANSWER_DONE_REQUEST_ACTION,
         payload: {
-            ballotAnswers
+            ballots
         },
     };
 };
@@ -226,11 +226,11 @@ function getBallotsOfElection(ballotAnswers: BallotAnswer[], electionId: number)
 export const fetchBallotAnswers = (electionId: number) => {
     return (dispatch: Dispatch) => {
         dispatch(createFetchBallotAnswerRequestAction(electionId));
-        fetch("http://localhost:3060/ballotAnswers")
+        fetch("http://localhost:3060/ballots?electionId="+electionId)
             .then((res) => res.json())
-            .then((ballotAnswer) => {
-                const ballotsAnswersOfElections = getBallotsOfElection(ballotAnswer, electionId);
-                dispatch(createFetchBallotAnswerDoneAction(ballotsAnswersOfElections));
+            .then((ballots) => {
+                // const ballotsAnswersOfElections = getBallotsOfElection(ballotAnswer, electionId);
+                dispatch(createFetchBallotAnswerDoneAction(ballots));
                 return;
             });
     };
