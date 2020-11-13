@@ -6,7 +6,6 @@ import "./VoterViewRow.css";
 
 export type VoterViewRowProps = {
   voter: Voter;
-  idsToBeDeleted: number[];
   onEditVoter: (voterId: number) => void;
   onDeleteVoter: (voterId: number) => void;
   onIdSelected:(id:number,checked:boolean) => void;

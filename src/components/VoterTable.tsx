@@ -11,7 +11,6 @@ import "./VoterTable.css";
 export type VoterTableProps = {
   voters: Voter[];
   editVoterId: number;
-  idsToBeDeleted: number[];
   votersSort : VotersSort,
   onEditVoter: (voterId: number) => void;
   onDeleteVoter: (voterId: number) => void;
@@ -101,7 +100,6 @@ export function VoterTable(props: VoterTableProps) {
               key={voter.id}
               voter={voter}
               onIdSelected={onIdSelected}
-              idsToBeDeleted={props.idsToBeDeleted}
               onEditVoter={props.onEditVoter}
               onDeleteVoter={props.onDeleteVoter}
 
