@@ -16,13 +16,6 @@ export type Election = {
     questions: Question[]
 };
 
-export type Voter = {
-    id: number,
-    firstName: string,
-    lastName: string,
-    email: string
-};
-
 export type Ballot = {
     id: number,
     voterId: number,
