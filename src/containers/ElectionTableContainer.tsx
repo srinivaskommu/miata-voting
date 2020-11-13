@@ -6,20 +6,26 @@ import {MiataVotingState} from "../models/miataVotingStore";
 import {fetchBallots, refreshElections} from "../actions/electionsAction";
 import {Ballot, Election,  ResultCount,} from "../models/elections";
 
+// const computeResult = (answers: Ballot[]) => {
+//     let sums = [] as ResultCount[];
+//     for (var i = 0; i < answers.length; i++) {
+//         const votesFor = sumQuestion(answers, i);
+//         console.log("votesFor: " + votesFor);
+//         const votesAgainst = answers.length - votesFor;
+//         console.log("votesAgainst: " + votesAgainst);
+//         sums = [...sums, {title: answers[0].answers[i].title, for : votesFor, against: votesAgainst}];
+//     }
+//     return sums;
+// };
+
+
 const computeResult = (answers: Ballot[]) => {
-    // answers.forEach(ar)
-    // return answers.reduce((result, entry) => {
-    //
-    // });
-    let sums = [] as ResultCount[];
-    for (var i = 0; i < answers.length; i++) {
-        const votesFor = sumQuestion(answers, i);
-        console.log("votesFor: " + votesFor);
+    return answers.reduce((sums, entry, idx)  => {
+        const votesFor = sumQuestion(answers, idx);
         const votesAgainst = answers.length - votesFor;
-        console.log("votesAgainst: " + votesAgainst);
-        sums = [...sums, {title: answers[0].answers[i].title, for : votesFor, against: votesAgainst}];
-    }
-    return sums;
+        return [...sums, {title: answers[0].answers[idx].title, for : votesFor, against: votesAgainst}];
+
+    }, [] as ResultCount[])
 };
 
 const sumQuestion = (answers: Ballot[], idx: number) => {
