@@ -1,14 +1,12 @@
 import {useDispatch, useSelector} from "react-redux";
 import {MiataVotingState} from "../models/miataVotingStore";
 import {bindActionCreators} from "redux";
-import React, {useMemo} from "react";
+import React, {useEffect, useMemo} from "react";
 import { createSelectElectionAction, refreshVoters } from "../actions/votersActions";
 import { VoterTool } from "../components/VoterTool";
 
 export function VoterToolContainer() {
     const stateProps = useSelector((state: MiataVotingState) => {
-        
-
         return {...state.votersState};
     });
 

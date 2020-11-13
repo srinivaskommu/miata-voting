@@ -2,16 +2,17 @@ import { Reducer, combineReducers } from "redux";
 
 import { Voter } from "../models/voters";
 import {
-  isAppendVoterRequestAction,
   isCancelVoterAction,
+  isDeleteSelectedVoterRequestAction,
   isEditVoterAction,
+  isSortVotersAction,
   isRefreshVotersDoneAction, isSelectElectionAction, VoterActions,
 } from "../actions/votersActions";
+import { VotersSort } from "../models/votersStore";
 
 export const votersReducer: Reducer<Voter[], VoterActions> = (voters = [], action) => {
 
   if (isRefreshVotersDoneAction(action)) {
-    console.log(action);
     return action.payload.voters;
   }
 
@@ -45,11 +46,45 @@ export const registerSelectReducer: Reducer<string, VoterActions> = (
   return isRegister;
 };
 
+export const selectedDeleteReducer: Reducer<number[], VoterActions> = (voters = [], action) => {
+
+  if (isDeleteSelectedVoterRequestAction(action)) {
+    return action.payload.idsToBeDeleted;
+  }
+
+  return voters;
+};
+
+export const votersSortReducer: Reducer<VotersSort, VoterActions> = (
+  votersSort = { sortCol: "id", sortDir: "asc" },
+  action
+) => {
+  if (isSortVotersAction(action)) {
+    if (
+      votersSort.sortCol === action.payload.sortCol &&
+      votersSort.sortDir === "asc"
+    ) {
+      return {
+        sortCol: action.payload.sortCol,
+        sortDir: "desc",
+      };
+    } else {
+      return {
+        sortCol: action.payload.sortCol,
+        sortDir: "asc",
+      };
+    }
+  }
+
+  return votersSort;
+};
 
 
 
 export const voterToolReducer = combineReducers({
   voters: votersReducer,
   editVoterId: editVoterIdReducer,
-  isRegister:registerSelectReducer
+  isRegister:registerSelectReducer,
+  idsToBeDeleted:selectedDeleteReducer,
+  votersSort: votersSortReducer,
 });

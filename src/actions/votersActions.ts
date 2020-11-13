@@ -10,6 +10,9 @@ export const REMOVE_VOTER_REQUEST_ACTION = "REMOVE_VOTER_REQUEST";
 export const EDIT_VOTER_ACTION = "EDIT_VOTER";
 export const CANCEL_VOTER_ACTION = "CANCEL_VOTER";
 export const SELECT_REGISTER_ACTION = 'SELECT_REGISTER_ACTION';
+export const SORT_VOTERS_ACTION = "SORT_VOTERS_ACTION";
+export const DELETE_SELECTED_REQUEST_ACTION = "DELETE_SELECTED_REQUEST_ACTION";
+export const DELETE_SELECTED_REQUEST_DONE_ACTION = "DELETE_SELECTED_REQUEST_DONE_ACTION";
 
 
 export type RefreshVotersRequestAction = Action<
@@ -247,6 +250,77 @@ export const createSelectElectionAction: CreateSelectElectionAction = (isRegiste
   };
 };
 
+export interface SortVotersAction extends Action<typeof SORT_VOTERS_ACTION> {
+  payload: {
+    sortCol: keyof Voter;
+  };
+}
+
+export function isSortVotersAction(action: AnyAction): action is SortVotersAction {
+  return action.type === SORT_VOTERS_ACTION;
+}
+
+export type CreateSortVotersAction = (sortCol: keyof Voter) => SortVotersAction;
+
+export const createSortVotersAction: CreateSortVotersAction = (
+  sortCol: keyof Voter
+) => {
+  return {
+    type: SORT_VOTERS_ACTION,
+    payload: {
+      sortCol,
+    },
+  };
+};
+
+
+export interface DeleteSelectedVoterRequestAction
+  extends Action<typeof DELETE_SELECTED_REQUEST_ACTION> {
+  payload: {
+    idsToBeDeleted: number[];
+  };
+}
+
+export function isDeleteSelectedVoterRequestAction(
+  action: AnyAction
+): action is DeleteSelectedVoterRequestAction {
+  return action.type === DELETE_SELECTED_REQUEST_ACTION;
+}
+
+export type CreateDeleteSelectedVoterRequestAction = (
+  idsToBeDeleted: number[]
+) => DeleteSelectedVoterRequestAction;
+
+export const createDeleteSelectedVoterRequestAction: CreateDeleteSelectedVoterRequestAction = (
+  idsToBeDeleted
+) => {
+  return {
+    type: DELETE_SELECTED_REQUEST_ACTION,
+    payload: {
+      idsToBeDeleted,
+    },
+  };
+};
+
+export const deleteSelectedVoters = (idsToBeDeleted: number[]) => {
+  return (dispatch: Dispatch) => {
+    dispatch(createDeleteSelectedVoterRequestAction(idsToBeDeleted));
+    return Promise.all(
+      idsToBeDeleted.map((id: number) => {
+        return fetch("http://localhost:3060/voters/" + encodeURIComponent(id), {
+          method: "DELETE",
+        });
+      })
+    ).then(() => {
+      dispatch(createDeleteSelectedVoterRequestAction([]));
+    })
+    .then(() => {
+      refreshVoters()(dispatch);
+    });
+  
+  };
+};
+
 
 
 export type VoterActions =
@@ -257,4 +331,6 @@ export type VoterActions =
   | RemoveVoterRequestAction
   | EditVoterAction
   | CancelVoterAction
-  | SelectRegisterAction;
+  | SelectRegisterAction
+  | DeleteSelectedVoterRequestAction
+  |SortVotersAction;
