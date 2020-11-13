@@ -2,7 +2,6 @@ import { Reducer, combineReducers } from "redux";
 
 import { Voter } from "../models/voters";
 import {
-  isAppendVoterRequestAction,
   isCancelVoterAction,
   isDeleteSelectedVoterRequestAction,
   isEditVoterAction,
@@ -14,7 +13,6 @@ import { VotersSort } from "../models/votersStore";
 export const votersReducer: Reducer<Voter[], VoterActions> = (voters = [], action) => {
 
   if (isRefreshVotersDoneAction(action)) {
-    console.log(action);
     return action.payload.voters;
   }
 
@@ -51,7 +49,6 @@ export const registerSelectReducer: Reducer<string, VoterActions> = (
 export const selectedDeleteReducer: Reducer<number[], VoterActions> = (voters = [], action) => {
 
   if (isDeleteSelectedVoterRequestAction(action)) {
-    console.log(action);
     return action.payload.idsToBeDeleted;
   }
 
