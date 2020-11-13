@@ -3,17 +3,18 @@ import {Election} from "../models/elections";
 
 export type BallotsListProps = {
     elections: Election[],
-    onRefreshCars: () => void;
+    onRefreshElections: () => void;
+    onElectionSelected: (electionId: number) => void;
 }
 
 export function BallotsList(props: BallotsListProps) {
 
     useEffect(() => {
-        props.onRefreshCars();
-    }, [props.onRefreshCars]);
+        props.onRefreshElections();
+    }, [props.onRefreshElections]);
 
     const electionsList = props.elections.map(election => {
-        return (<li key={election.id}>{election.name}</li>);
+        return (<li key={election.id}>{election.name}<span><button onClick={() => props.onElectionSelected(election.id)}>Vote</button></span></li>);
     });
     return (
         <ul>

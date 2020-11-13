@@ -1,5 +1,5 @@
 import React from "react";
-import {BallotsListContainer} from "../containers/BallotsListContainer";
+import {BallotsToolContainer} from "../containers/BallotsToolContainer";
 
 export function Vote() {
 
@@ -8,7 +8,7 @@ export function Vote() {
             <header>
                 <h1>Vote</h1>
             </header>
-            <BallotsListContainer/>
+            <BallotsToolContainer/>
         </>
     );
 }
