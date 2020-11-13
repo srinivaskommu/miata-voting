@@ -19,11 +19,16 @@ export function ElectionForm(props: ElectionFormProps) {
         const newElection = {name: electionQuestionForm.name, questions: props.questions} as NewElection;
         props.onCreateElection(newElection)
         props.onClose();
+
+        setElectionQuestionForm({name: "",
+            question: "",})
     }
 
     const addQuestion = () => {
         const newQuestion = {id: props.questions.length,title : electionQuestionForm.question} as Question;
         props.onAddQuestion(newQuestion);
+        setElectionQuestionForm({...electionQuestionForm,
+            question: "",})
     }
 
     const change = (e: ChangeEvent<HTMLInputElement>) => {
