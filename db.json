@@ -14,6 +14,36 @@
       "address": "35828 Lexi Lane",
       "county": "CA",
       "id": 101
+    },
+    {
+      "firstName": "",
+      "lastName": "",
+      "dob": "",
+      "email": "bandith_phunivong@intuit.com",
+      "phone": "9515999369",
+      "address": "35828 Lexi Lane",
+      "county": "CA",
+      "id": 102
+    },
+    {
+      "firstName": "",
+      "lastName": "",
+      "dob": "",
+      "email": "bandith_hommounivong@intuit.com",
+      "phone": "9515999369",
+      "address": "35828 Lexi Lane",
+      "county": "CA",
+      "id": 103
+    },
+    {
+      "firstName": "",
+      "lastName": "",
+      "dob": "",
+      "email": "bandith_mounivong@intuit.com",
+      "phone": "",
+      "address": "",
+      "county": "",
+      "id": 104
     }
   ],
   "elections": [
@@ -439,6 +469,57 @@
         }
       ],
       "id": 1
+    },
+    {
+      "voterId": 102,
+      "electionId": 1,
+      "answers": [
+        {
+          "id": 1,
+          "title": "Are dogs better than cats?",
+          "answer": false
+        },
+        {
+          "id": 2,
+          "title": "Are birds smarter?",
+          "answer": true
+        }
+      ],
+      "id": 2
+    },
+    {
+      "voterId": 102,
+      "electionId": 1,
+      "answers": [
+        {
+          "id": 1,
+          "title": "Are dogs better than cats?",
+          "answer": false
+        },
+        {
+          "id": 2,
+          "title": "Are birds smarter?",
+          "answer": true
+        }
+      ],
+      "id": 3
+    },
+    {
+      "voterId": 104,
+      "electionId": 1,
+      "answers": [
+        {
+          "id": 1,
+          "title": "Are dogs better than cats?",
+          "answer": true
+        },
+        {
+          "id": 2,
+          "title": "Are birds smarter?",
+          "answer": false
+        }
+      ],
+      "id": 4
     }
   ],
   "ballotAnswers": [

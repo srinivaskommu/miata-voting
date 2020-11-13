@@ -6,29 +6,36 @@ import {MiataVotingState} from "../models/miataVotingStore";
 import {fetchBallots, refreshElections} from "../actions/electionsAction";
 import {Ballot, Election,  ResultCount,} from "../models/elections";
 
-// const computeResult = (answers: Ballot[]) => {
-//     let sums = [] as ResultCount[];
-//     for (var i = 0; i < answers.length; i++) {
-//         const votesFor = sumQuestion(answers, i);
-//         console.log("votesFor: " + votesFor);
-//         const votesAgainst = answers.length - votesFor;
-//         console.log("votesAgainst: " + votesAgainst);
-//         sums = [...sums, {title: answers[0].answers[i].title, for : votesFor, against: votesAgainst}];
-//     }
-//     return sums;
-// };
-
-
-const computeResult = (answers: Ballot[]) => {
-    return answers.reduce((sums, entry, idx)  => {
-        const votesFor = sumQuestion(answers, idx);
-        const votesAgainst = answers.length - votesFor;
-        return [...sums, {title: answers[0].answers[idx].title, for : votesFor, against: votesAgainst}];
-
-    }, [] as ResultCount[])
+const computeResult = (ballots: Ballot[]) => {
+    let sums = [] as ResultCount[];
+    if (ballots.length < 1) {
+        return [];
+    }
+    for (var i = 0; i < ballots[0].answers.length; i++) {
+        const votesFor = sumQuestion(ballots, i);
+        console.log("votesFor: " + votesFor);
+        const votesAgainst = ballots.length - votesFor;
+        console.log("votesAgainst: " + votesAgainst);
+        sums = [...sums, {title: ballots[0].answers[i].title, for : votesFor, against: votesAgainst}];
+    }
+    return sums;
 };
 
+// const computeResult = (ballots: Ballot[]) => {
+//     return ballots.reduce((sums, entry, idx)  => {
+//         const votesFor = sumQuestion(ballots, idx);
+//         const votesAgainst = ballots.length - votesFor;
+//         return [...sums, {title: ballots[0].answers[idx].title, for : votesFor, against: votesAgainst}];
+//
+//     }, [] as ResultCount[])
+// };
+
+// };
+
 const sumQuestion = (answers: Ballot[], idx: number) => {
+    console.log("sumQuestion");
+    console.log(idx);
+    console.log(answers);
     return answers.reduce((total, entry) => {
         return total + (entry.answers[idx].answer ? 1 : 0);
     }, 0);
