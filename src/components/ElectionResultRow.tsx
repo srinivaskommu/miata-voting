@@ -3,6 +3,7 @@ import {Election} from "../models/elections";
 
 export type ElectionResultRowProps = {
     election: Election;
+    onViewResults: (electionId: number) => void;
 }
 export function ElectionResultRow(props : ElectionResultRowProps) {
     return (
@@ -10,7 +11,7 @@ export function ElectionResultRow(props : ElectionResultRowProps) {
             <td className="col-body">{props.election.id}</td>
             <td className="col-body">{props.election.name}</td>
             <td>
-                <button type="button" onClick={() => null}>View Results</button>
+                <button type="button" onClick={() => props.onViewResults(props.election.id)}>View Results</button>
             </td>
         </tr>
     );

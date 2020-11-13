@@ -1,9 +1,9 @@
 import {combineReducers, Reducer} from "redux";
-import {Election, Question} from "../models/elections";
+import {BallotAnswer, Election, Question} from "../models/elections";
 import {
     ElectionsActions, isAddQuestionRequestAction,
-    isCloseElectionRequestAction,
-    isRefreshElectionsDoneAction
+    isCloseElectionRequestAction, isFetchBallotAnswerDoneAction,
+    isRefreshElectionsDoneAction, isShowResultRequestAction
 } from "../actions/electionsAction";
 
 const electionsReducer: Reducer<Election[], ElectionsActions> = (elections = [], action) => {
@@ -28,7 +28,25 @@ const questionReducer: Reducer<Question[], ElectionsActions> = (questions = [], 
     return newQuestions;
 };
 
+const resultsReducer: Reducer<BallotAnswer[], ElectionsActions> = (ballotAnswers= [], action) => {
+
+
+
+    // if (isShowResultRequestAction(action)) {
+    //     const idx = elections.findIndex((election) => (election.id === action.payload.electionId));
+    //     const questions =  stateProps.elections[idx].questions
+    // }
+
+    if (isFetchBallotAnswerDoneAction(action)) {
+        console.log(action.payload.ballotAnswers);
+        return action.payload.ballotAnswers;
+    }
+    return ballotAnswers;
+
+};
+
 export const electionReducer = combineReducers({
     elections: electionsReducer,
-    questions: questionReducer
+    questions: questionReducer,
+    results: resultsReducer
 });

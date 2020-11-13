@@ -24,3 +24,10 @@ export type Ballot = {
     electionId: number,
     answers: Answer[],
 };
+
+export type BallotAnswer = Omit<Ballot, "voterId">;
+
+export type ResultCount = {
+    for : number,
+    against: number
+}

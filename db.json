@@ -430,7 +430,23 @@
           "answer": true
         },
         {
+          "questionId": 2,
+          "title": "Are birds smarter?",
+          "answer": true
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "electionId": 1,
+      "answers": [
+        {
           "questionId": 1,
+          "title": "Are dogs better than cats?",
+          "answer": true
+        },
+        {
+          "questionId": 2,
           "title": "Are birds smarter?",
           "answer": true
         }

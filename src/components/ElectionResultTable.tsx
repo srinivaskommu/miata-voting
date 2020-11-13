@@ -1,10 +1,13 @@
 import React from "react";
 import "./ElectionTable.css";
-import {Election} from "../models/elections";
+import {BallotAnswer, Election, ResultCount} from "../models/elections";
 import {ElectionResultRow} from "./ElectionResultRow";
 
 export type ElectionResultTableProp = {
     elections: Election[];
+    results: BallotAnswer[];
+    resultsCount: ResultCount[];
+    onViewResults: (electionId: number) => void;
 }
 export function ElectionResultTable(props: ElectionResultTableProp) {
 
@@ -17,7 +20,7 @@ export function ElectionResultTable(props: ElectionResultTableProp) {
             </thead>
             <tbody>
             {
-                props.elections.map((election) => <ElectionResultRow election={election}/>)
+                props.elections.map((election) => <ElectionResultRow election={election} onViewResults={props.onViewResults}/>)
             }
             </tbody>
         </table>
