@@ -11,13 +11,28 @@ const computeResult = (ballots: Ballot[]) => {
     if (ballots.length < 1) {
         return [];
     }
-    for (var i = 0; i < ballots[0].answers.length; i++) {
-        const votesFor = sumQuestion(ballots, i);
-        console.log("votesFor: " + votesFor);
-        const votesAgainst = ballots.length - votesFor;
-        console.log("votesAgainst: " + votesAgainst);
-        sums = [...sums, {title: ballots[0].answers[i].title, for : votesFor, against: votesAgainst}];
-    }
+
+    sums = ballots[0].answers.reduce( (results: ResultCount[], answer, i ) => {
+
+        const yesCount= sumQuestion(ballots, i);
+
+        const answerResult = {
+            title: answer.title,
+            for: yesCount,
+            against: ballots.length - yesCount,
+        };
+
+        return [...results, answerResult];
+
+    }, [] as ResultCount[])
+
+    // for (var i = 0; i < ballots[0].answers.length; i++) {
+    //     const votesFor = sumQuestion(ballots, i);
+    //     console.log("votesFor: " + votesFor);
+    //     const votesAgainst = ballots.length - votesFor;
+    //     console.log("votesAgainst: " + votesAgainst);
+    //     sums = [...sums, {title: ballots[0].answers[i].title, for : votesFor, against: votesAgainst}];
+    // }
     return sums;
 };
 
