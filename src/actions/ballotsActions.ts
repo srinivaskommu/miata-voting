@@ -1,5 +1,6 @@
 import {Action, AnyAction, Dispatch} from "redux";
-import {Answer, Ballot, Election, Voter} from "../models/elections";
+import {Answer, Ballot, Election} from "../models/elections";
+import {Voter} from "../models/voters";
 
 export const REFRESH_ELECTIONS_REQUEST_ACTION = 'REFRESH_ELECTIONS_REQUEST_ACTION';
 export const REFRESH_ELECTIONS_DONE_ACTION = 'REFRESH_ELECTIONS_DONE_ACTION';
