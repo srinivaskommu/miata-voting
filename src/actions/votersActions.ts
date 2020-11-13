@@ -305,8 +305,19 @@ export const createDeleteSelectedVoterRequestAction: CreateDeleteSelectedVoterRe
 export const deleteSelectedVoters = (idsToBeDeleted: number[]) => {
   return (dispatch: Dispatch) => {
     dispatch(createDeleteSelectedVoterRequestAction(idsToBeDeleted));
-  return  (Promise.all(idsToBeDeleted.map(id => removeVoter(id)))
-    .then(() => dispatch(createDeleteSelectedVoterRequestAction([]))));
+    return Promise.all(
+      idsToBeDeleted.map((id: number) => {
+        return fetch("http://localhost:3060/voters/" + encodeURIComponent(id), {
+          method: "DELETE",
+        });
+      })
+    ).then(() => {
+      dispatch(createDeleteSelectedVoterRequestAction([]));
+    })
+    .then(() => {
+      refreshVoters()(dispatch);
+    });
+  
   };
 };
 
