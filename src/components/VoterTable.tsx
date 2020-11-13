@@ -28,6 +28,14 @@ const sortArrow = (votersSort: VotersSort, sortCol: keyof Voter) => {
 };
 
 export function VoterTable(props: VoterTableProps) {
+  let idsToBeDeleted: number[] = [];
+  const onIdSelected = (id:number,checked:boolean) => {
+    
+    if(checked)
+    idsToBeDeleted =  [...idsToBeDeleted,id];
+    else
+    idsToBeDeleted = [...idsToBeDeleted].filter((item) => id !== item)
+  };
   return (
     <>
     <table id="voter-table">
@@ -92,6 +100,7 @@ export function VoterTable(props: VoterTableProps) {
             <VoterViewRow
               key={voter.id}
               voter={voter}
+              onIdSelected={onIdSelected}
               idsToBeDeleted={props.idsToBeDeleted}
               onEditVoter={props.onEditVoter}
               onDeleteVoter={props.onDeleteVoter}
@@ -102,7 +111,7 @@ export function VoterTable(props: VoterTableProps) {
       </tbody>
     </table>
     <td>
-      <button type="button" onClick= {()=> props.onSelectedDeleteVoter(props.idsToBeDeleted)}>Delete Selected</button>
+      <button type="button" onClick= {()=> props.onSelectedDeleteVoter(idsToBeDeleted)}>Delete Selected</button>
     </td>
     </>
   );

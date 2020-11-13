@@ -9,6 +9,7 @@ export type VoterViewRowProps = {
   idsToBeDeleted: number[];
   onEditVoter: (voterId: number) => void;
   onDeleteVoter: (voterId: number) => void;
+  onIdSelected:(id:number,checked:boolean) => void;
 };
 
 export function VoterViewRow(props: VoterViewRowProps) {
@@ -20,19 +21,9 @@ export function VoterViewRow(props: VoterViewRowProps) {
 
 
   const handleChange = (event: { target: { checked: any; }; }) => {
-    // var ids = [...props.idsToBeDeleted];
-    // if(event.target.checked)
-    // ids =  [...ids,props.voter.id];
-    // else
-    // ids = [...ids].filter((item) => props.voter.id !== item)
-
-    // props.idsToBeDeleted = [...ids];
-//no mutation
-       if(event.target.checked)
-          props.idsToBeDeleted.push(props.voter.id);
-
-
-  };
+    if(event.target.checked)
+       props.onIdSelected(props.voter.id,event.target.checked);
+};
 
   return (
     <tr>
