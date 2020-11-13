@@ -5,7 +5,7 @@ import {Link, Switch, Route} from "react-router-dom";
 import {VoterRegistration} from "./components/VoterRegistration";
 import {Home} from "./components/Home";
 import {Vote} from "./components/Vote";
-import {ElectionForm} from "./components/ElectionForm";
+import {ElectionTool} from "./components/ElectionTool";
 
 function App() {
   return (
@@ -33,7 +33,7 @@ function App() {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/voter-registration" component={VoterRegistration} />
-            <Route path="/elections" component={ElectionForm} />
+            <Route path="/elections" component={ElectionTool} />
             <Route path="/vote" component={Vote} />
           </Switch>
         </main>

@@ -4,10 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from "react-router-dom";
+import {Provider} from "react-redux";
+import {miataVotingStore} from "./stores/miataVotingStore";
 
 ReactDOM.render(
     <Router>
-        <App />
+        <Provider store={miataVotingStore}>
+            <App />
+        </Provider>
     </Router>,
   document.getElementById('root')
 );
