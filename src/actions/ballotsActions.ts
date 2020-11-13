@@ -60,8 +60,8 @@ export const createSubmitBallotDoneAction: CreateSubmitBallotDoneAction = (ballo
 async function createBallot(voterId: number, electionId: number, answers: Answer[]) {
     const res = await fetch("http://localhost:3060/ballots", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ voterId, electionId, answers }),
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({voterId, electionId, answers}),
     });
     return await res.json();
 }
@@ -230,13 +230,23 @@ function getVoterIdByEmail(voters: Voter[], email: string) {
     }
 }
 
+async function ballotAlreadyCast(voterId: number, electionId: number) {
+    const res = await fetch("http://localhost:3060/ballots?voterId=" + voterId + "&electionId=" + electionId);
+    const body = await res.json();
+    console.log(body.length);
+    return body.length > 0;
+}
+
 export const fetchBallot = (email: string, electionId: number) => {
     return (dispatch: Dispatch) => {
         dispatch(createFetchBallotRequestAction(email, electionId));
         fetch("http://localhost:3060/voters")
             .then((res) => res.json())
-            .then((voters) => {
-                const voterId = getVoterIdByEmail(voters, email);
+            .then(async (voters) => {
+                let voterId = getVoterIdByEmail(voters, email);
+                if (await ballotAlreadyCast(voterId, electionId)) {
+                    voterId = -1;
+                }
                 dispatch(createFetchBallotDoneAction(voterId, electionId));
                 return;
             });
