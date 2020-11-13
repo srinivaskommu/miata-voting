@@ -18,9 +18,9 @@ export function VoterTool(props: VoterToolProps) {
 </button>
     </td>;
 
-    if (props.isRegister==="REGISTER") {
+    if (props.isRegister === "REGISTER") {
         widget = <VoterFormContainer></VoterFormContainer>;
-    } else if (props.isRegister==="SHOW"){
+    } else if (props.isRegister === "SHOW") {
         widget = <VoterTableContainer></VoterTableContainer>
     }
 

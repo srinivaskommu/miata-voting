@@ -10,6 +10,7 @@ export const REMOVE_VOTER_REQUEST_ACTION = "REMOVE_VOTER_REQUEST";
 export const EDIT_VOTER_ACTION = "EDIT_VOTER";
 export const CANCEL_VOTER_ACTION = "CANCEL_VOTER";
 export const SELECT_REGISTER_ACTION = 'SELECT_REGISTER_ACTION';
+export const SORT_VOTERS_ACTION = "SORT_VOTERS_ACTION";
 
 
 export type RefreshVotersRequestAction = Action<
@@ -244,6 +245,29 @@ export const createSelectElectionAction: CreateSelectElectionAction = (isRegiste
       payload: {
         isRegister:isRegister,
       },
+  };
+};
+
+export interface SortVotersAction extends Action<typeof SORT_VOTERS_ACTION> {
+  payload: {
+    sortCol: keyof Voter;
+  };
+}
+
+export function isSortVotersAction(action: AnyAction): action is SortVotersAction {
+  return action.type === SORT_VOTERS_ACTION;
+}
+
+export type CreateSortVotersAction = (sortCol: keyof Voter) => SortVotersAction;
+
+export const createSortVotersAction: CreateSortVotersAction = (
+  sortCol: keyof Voter
+) => {
+  return {
+    type: SORT_VOTERS_ACTION,
+    payload: {
+      sortCol,
+    },
   };
 };
 
