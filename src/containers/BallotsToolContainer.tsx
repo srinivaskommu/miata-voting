@@ -2,7 +2,12 @@ import {useDispatch, useSelector} from "react-redux";
 import {MiataVotingState} from "../models/miataVotingStore";
 import {bindActionCreators} from "redux";
 import React, {useMemo} from "react";
-import {createSelectElectionAction, fetchBallot, refreshElections} from "../actions/ballotsActions";
+import {
+    createChangeAnswerAction,
+    createSelectElectionAction,
+    fetchBallot,
+    refreshElections, submitBallot
+} from "../actions/ballotsActions";
 import {BallotsTool} from "../components/BallotsTool";
 
 export function BallotsToolContainer() {
@@ -18,6 +23,8 @@ export function BallotsToolContainer() {
             onRefreshElections: refreshElections,
             onElectionSelected: createSelectElectionAction,
             onFetchBallot: fetchBallot,
+            onAnswerChange: createChangeAnswerAction,
+            onSubmitAnswers: submitBallot
         },
         dispatch
     ), [dispatch]);

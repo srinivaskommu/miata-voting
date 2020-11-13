@@ -24,11 +24,7 @@
     }
   ],
   "ballots": [
-    {
-      "id": 1,
-      "voterId": 100,
-      "electionId": 1
-    }
+
   ],
   "ballotAnswers": [
     {
@@ -49,4 +45,3 @@
     }
   ]
 }
-
