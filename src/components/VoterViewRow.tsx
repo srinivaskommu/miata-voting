@@ -17,6 +17,10 @@ export function VoterViewRow(props: VoterViewRowProps) {
 
   return (
     <tr>
+      <td>
+      <input
+  type="checkbox"/>
+      </td>
       <td className="col-body">{props.voter.id}</td>
       <td className="col-body">{props.voter.firstName}</td>
       <td className="col-body">{props.voter.lastName}</td>

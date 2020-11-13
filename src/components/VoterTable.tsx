@@ -22,6 +22,9 @@ export function VoterTable(props: VoterTableProps) {
     <table id="voter-table">
       <thead>
         <tr>
+        <th className="col-header">
+            Select
+          </th>
           <th className="col-header">
             Id
           </th>
