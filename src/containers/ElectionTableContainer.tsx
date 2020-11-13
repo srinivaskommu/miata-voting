@@ -17,7 +17,7 @@ const computeResult = (answers: BallotAnswer[]) => {
         console.log("votesFor: " + votesFor);
         const votesAgainst = answers.length - votesFor;
         console.log("votesAgainst: " + votesAgainst);
-        sums = [...sums, {for : votesFor, against: votesAgainst}];
+        sums = [...sums, {title: answers[0].answers[i].title, for : votesFor, against: votesAgainst}];
     }
     return sums;
 };
@@ -38,6 +38,10 @@ export function ElectionTableContainer() {
     console.log("resultsProp: " + stateProps.results);
     console.log("resultsCount: " + resultCount);
     console.log("resultCountPro: " + stateProps.resultsCount);
+
+    // stateProps.resultsCount = useMemo(() => computeResult(stateProps.resultsCount), [
+    //     stateProps.resultsCount,
+    // ]); // how is this different from line 36
     const dispatch = useDispatch();
 
     const boundActionProps = useMemo(() => bindActionCreators(

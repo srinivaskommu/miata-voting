@@ -22,6 +22,9 @@ export function ElectionResultTable(props: ElectionResultTableProp) {
             {
                 props.elections.map((election) => <ElectionResultRow election={election} onViewResults={props.onViewResults}/>)
             }
+            {
+                props.resultsCount.map((resultCount) => <tr>Title: {resultCount.title}, For: {resultCount.for}, Against: {resultCount.against}</tr>)
+            }
             </tbody>
         </table>
     );
