@@ -1,7 +1,5 @@
 import {Action, AnyAction, Dispatch} from "redux";
-import {Ballot, BallotAnswer, Election, NewElection, NewQuestion} from "../models/elections";
-import {Voter} from "../models/voters";
-import {FETCH_BALLOT_DONE_ACTION} from "./ballotsActions";
+import {Ballot, Election, NewElection, NewQuestion} from "../models/elections";
 
 export const REFRESH_ELECTIONS_REQUEST_ACTION = 'REFRESH_ELECTIONS_REQUEST_ACTION';
 export const REFRESH_ELECTIONS_DONE_ACTION = 'REFRESH_ELECTIONS_DONE_ACTION';
@@ -218,18 +216,13 @@ export const createFetchBallotAnswerRequestAction: CreateFetchBallotAnswerReques
     };
 };
 
-function getBallotsOfElection(ballotAnswers: BallotAnswer[], electionId: number) {
-    return ballotAnswers.filter((ballotAnswer) => ballotAnswer.electionId === electionId)
-}
 
-
-export const fetchBallotAnswers = (electionId: number) => {
+export const fetchBallots = (electionId: number) => {
     return (dispatch: Dispatch) => {
         dispatch(createFetchBallotAnswerRequestAction(electionId));
         fetch("http://localhost:3060/ballots?electionId="+electionId)
             .then((res) => res.json())
             .then((ballots) => {
-                // const ballotsAnswersOfElections = getBallotsOfElection(ballotAnswer, electionId);
                 dispatch(createFetchBallotAnswerDoneAction(ballots));
                 return;
             });

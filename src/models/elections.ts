@@ -25,8 +25,6 @@ export type Ballot = {
     answers: Answer[],
 };
 
-export type BallotAnswer = Omit<Ballot, "voterId">;
-
 export type ResultCount = {
     title: string,
     for : number,

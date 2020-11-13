@@ -1,5 +1,5 @@
 import {combineReducers, Reducer} from "redux";
-import {Ballot, BallotAnswer, Election, Question} from "../models/elections";
+import {Ballot, Election, Question} from "../models/elections";
 import {
     ElectionsActions, isAddQuestionRequestAction,
     isCloseElectionRequestAction, isFetchBallotAnswerDoneAction,
@@ -28,7 +28,7 @@ const questionReducer: Reducer<Question[], ElectionsActions> = (questions = [], 
     return newQuestions;
 };
 
-const resultsReducer: Reducer<BallotAnswer[], ElectionsActions> = (ballots = [], action) => {
+const resultsReducer: Reducer<Ballot[], ElectionsActions> = (ballots = [], action) => {
 
 
 

@@ -1,11 +1,11 @@
 import React from "react";
 import "./ElectionTable.css";
-import {BallotAnswer, Election, ResultCount} from "../models/elections";
+import {Ballot, Election, ResultCount} from "../models/elections";
 import {ElectionResultRow} from "./ElectionResultRow";
 
 export type ElectionResultTableProp = {
     elections: Election[];
-    results: BallotAnswer[];
+    results: Ballot[];
     resultsCount: ResultCount[];
     onViewResults: (electionId: number) => void;
 }

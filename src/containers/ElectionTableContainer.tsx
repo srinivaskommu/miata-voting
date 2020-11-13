@@ -3,8 +3,8 @@ import { bindActionCreators } from "redux";
 import { useSelector, useDispatch } from "react-redux";
 import {ElectionResultTable} from "../components/ElectionResultTable";
 import {MiataVotingState} from "../models/miataVotingStore";
-import {createShowResultRequestAction, fetchBallotAnswers, refreshElections} from "../actions/electionsAction";
-import {Ballot, BallotAnswer, Election, Question, ResultCount,} from "../models/elections";
+import {fetchBallots, refreshElections} from "../actions/electionsAction";
+import {Ballot, Election,  ResultCount,} from "../models/elections";
 
 const computeResult = (answers: Ballot[]) => {
     // answers.forEach(ar)
@@ -47,7 +47,7 @@ export function ElectionTableContainer() {
     const boundActionProps = useMemo(() => bindActionCreators(
         {
             onRefreshTable: refreshElections,
-            onViewResults: fetchBallotAnswers
+            onViewResults: fetchBallots
         },
         dispatch
     ), [dispatch]);
