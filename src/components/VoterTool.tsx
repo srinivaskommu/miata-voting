@@ -9,14 +9,14 @@ export type VoterToolProps = {
 
 export function VoterTool(props: VoterToolProps) {
 
-    let widget = <td>
+    let widget = <div>
         <button type="button" onClick={() => props.onRegisterSelected("REGISTER")}>
             Register
 </button>
         <button type="button" onClick={() => props.onRegisterSelected("SHOW")}>
             Show
 </button>
-    </td>;
+    </div>;
 
     if (props.isRegister === "REGISTER") {
         widget = <VoterFormContainer></VoterFormContainer>;

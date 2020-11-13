@@ -108,9 +108,9 @@ export function VoterTable(props: VoterTableProps) {
         )}
       </tbody>
     </table>
-    <td>
+
       <button type="button" onClick= {()=> props.onSelectedDeleteVoter(idsToBeDeleted)}>Delete Selected</button>
-    </td>
+
     </>
   );
 }
