@@ -24,7 +24,40 @@
     }
   ],
   "ballots": [
-
+    {
+      "voterId": 100,
+      "electionId": 1,
+      "answers": [
+        {
+          "id": 1,
+          "title": "Are dogs better than cats?",
+          "answer": true
+        },
+        {
+          "id": 2,
+          "title": "Are birds smarter?",
+          "answer": false
+        }
+      ],
+      "id": 1
+    },
+    {
+      "voterId": 100,
+      "electionId": 1,
+      "answers": [
+        {
+          "id": 1,
+          "title": "Are dogs better than cats?",
+          "answer": true
+        },
+        {
+          "id": 2,
+          "title": "Are birds smarter?",
+          "answer": false
+        }
+      ],
+      "id": 2
+    }
   ],
   "ballotAnswers": [
     {

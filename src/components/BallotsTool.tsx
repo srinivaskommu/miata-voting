@@ -41,7 +41,7 @@ export function BallotsTool(props: BallotsToolProps) {
                               onRefreshElections={props.onRefreshElections}/>;
     } else if (props.voterId < 0) {
         widget = <VoterIdentification onCheckIdentity={onCheckIdentity}/>
-    } else {
+    } else{
         let answers = []
         if (props.answers.length > 0) {
             answers = props.answers;
