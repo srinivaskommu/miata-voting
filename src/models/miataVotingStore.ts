@@ -1,4 +1,4 @@
-import {Answer, Election} from "./elections";
+import {Answer, Election, Question} from "./elections";
 import { Voter } from "./voters";
 
 export type BallotToolState = {
@@ -10,8 +10,8 @@ export type BallotToolState = {
 }
 
 export type ElectionToolState = {
-    elections: Election[]
-    numQuestions: number
+    elections: Election[],
+    questions: Question[]
 }
 
 export type VoterToolState = {

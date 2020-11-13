@@ -1,11 +1,11 @@
 import {Action, AnyAction, Dispatch} from "redux";
-import {Election, NewElection} from "../models/elections";
+import {Election, NewElection, Question} from "../models/elections";
 
 export const REFRESH_ELECTIONS_REQUEST_ACTION = 'REFRESH_ELECTIONS_REQUEST_ACTION';
 export const REFRESH_ELECTIONS_DONE_ACTION = 'REFRESH_ELECTIONS_DONE_ACTION';
 export const APPEND_ELECTION_REQUEST_ACTION = 'APPEND_ELECTION_REQUEST_ACTION';
 export const CLOSE_ELECTION_REQUEST_ACTION = 'CLOSE_ELECTION_REQUEST_ACTION';
-export const CREATE_ELECTION_REQUEST_ACTION = 'CREATE_ELECTION_REQUEST_ACTION';
+export const ADD_QUESTION_REQUEST_ACTION = 'CREATE_ELECTION_REQUEST_ACTION';
 
 export type RefreshElectionsRequestAction = Action<typeof REFRESH_ELECTIONS_REQUEST_ACTION>;
 
@@ -119,30 +119,30 @@ export const createCloseElectionRequestAction: CreateCloseElectionRequestAction 
     };
 };
 
-export interface CreateElectionRequestAction
-    extends Action<typeof CREATE_ELECTION_REQUEST_ACTION> {
+export interface AddQuestionRequestAction
+    extends Action<typeof ADD_QUESTION_REQUEST_ACTION> {
     payload: {
-        numQuestions: number;
+        question: Question;
     }
 }
-export function isCreateElectionRequestAction(
+export function isAddQuestionRequestAction(
     action: AnyAction
-): action is CreateElectionRequestAction {
-    return action.type === CREATE_ELECTION_REQUEST_ACTION;
+): action is AddQuestionRequestAction {
+    return action.type === ADD_QUESTION_REQUEST_ACTION;
 }
 
-export type CreateCreateElectionRequestAction = (numQuestions: number
-) => CreateElectionRequestAction;
+export type CreateAddQuestionRequestAction = (question: Question
+) => AddQuestionRequestAction;
 
-export const createCreateElectionRequestAction: CreateCreateElectionRequestAction = (numQuestions: number
+export const createAddQuestionRequestAction: CreateAddQuestionRequestAction = (question: Question
 ) => {
     return {
-        type: CREATE_ELECTION_REQUEST_ACTION,
+        type: ADD_QUESTION_REQUEST_ACTION,
         payload: {
-            numQuestions: numQuestions
+            question
         }
     };
 };
 
 export type ElectionsActions = RefreshElectionsRequestAction
-    | RefreshElectionsDoneAction | AppendElectionRequestAction | CloseElectionRequestAction | CreateElectionRequestAction;
+    | RefreshElectionsDoneAction | AppendElectionRequestAction | CloseElectionRequestAction | AddQuestionRequestAction;

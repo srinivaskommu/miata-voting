@@ -1,26 +1,29 @@
 import React, {ChangeEvent, useState} from "react";
-import {NewElection} from "../models/elections";
+import {NewElection, Question} from "../models/elections";
 
 export type ElectionFormProps = {
-    numQuestions: number,
-    onAddElection: (newElection: NewElection) => void,
+    questions: Question[],
+    onAddQuestion: (question: Question) => void,
     onClose: () => void,
-    onCreateElection: (numQuestions: number) => void
+    onCreateElection: (newElection: NewElection) => void
 }
 
 
 export function ElectionForm(props: ElectionFormProps) {
     const [electionQuestionForm, setElectionQuestionForm] = useState({
-        numberOfQuestions: 0,
         name: "",
         question: "",
     });
 
     const addElection = () => {
-        const tempQuestions = {id: 1, title: electionQuestionForm.question}
-        const newElection = {name: electionQuestionForm.name, questions: [tempQuestions]} as NewElection;
-        props.onAddElection(newElection)
+        const newElection = {name: electionQuestionForm.name, questions: props.questions} as NewElection;
+        props.onCreateElection(newElection)
         props.onClose();
+    }
+
+    const addQuestion = () => {
+        const newQuestion = {id: props.questions.length,title : electionQuestionForm.question} as Question;
+        props.onAddQuestion(newQuestion);
     }
 
     const change = (e: ChangeEvent<HTMLInputElement>) => {
@@ -32,34 +35,33 @@ export function ElectionForm(props: ElectionFormProps) {
         });
     };
 
-    console.log(props.numQuestions < 1);
-    console.log(props.numQuestions);
     console.log("name: " + electionQuestionForm.name);
     return (<>
             <div>
-            <form>
-                <div>
-                    <label htmlFor="name-input">Election Name</label>
-                    <input
-                        type="text"
-                        id="name-input"
-                        name="name"
-                        value={electionQuestionForm.name}
-                        onChange={change}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="name-input">Election Question</label>
-                    <input
-                        type="text"
-                        id="question-input"
-                        name="question"
-                        value={electionQuestionForm.question}
-                        onChange={change}
-                    />
-                </div>
-            </form>
-            <button type="button" onClick={addElection}>Add Election</button>
+                <form>
+                    <div>
+                        <label htmlFor="name-input">Election Name</label>
+                        <input
+                            type="text"
+                            id="name-input"
+                            name="name"
+                            value={electionQuestionForm.name}
+                            onChange={change}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="name-input">Election Question</label>
+                        <input
+                            type="text"
+                            id="question-input"
+                            name="question"
+                            value={electionQuestionForm.question}
+                            onChange={change}
+                        />
+                    </div>
+                </form>
+                <button type="button" onClick={addElection}>Create Election</button>
+                <button type="button" onClick={addQuestion}>Add Question</button>
             </div>
         </>);
 }

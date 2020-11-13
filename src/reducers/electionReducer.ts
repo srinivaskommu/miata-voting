@@ -1,8 +1,8 @@
 import {combineReducers, Reducer} from "redux";
-import {Election} from "../models/elections";
+import {Election, Question} from "../models/elections";
 import {
-    ElectionsActions,
-    isCloseElectionRequestAction, isCreateElectionRequestAction,
+    ElectionsActions, isAddQuestionRequestAction,
+    isCloseElectionRequestAction,
     isRefreshElectionsDoneAction
 } from "../actions/electionsAction";
 
@@ -15,19 +15,19 @@ const electionsReducer: Reducer<Election[], ElectionsActions> = (elections = [],
     }
 };
 
-const editNumQuestionReducer: Reducer<number, ElectionsActions> = (numQuestions = 0, action) => {
-    if (isCloseElectionRequestAction(action)) {
-        return 0;
+const questionReducer: Reducer<Question[], ElectionsActions> = (questions = [], action) => {
+    let newQuestions = questions;
+    if (isAddQuestionRequestAction(action)) {
+        newQuestions = [...newQuestions, action.payload.question]
     }
 
-    if (isCreateElectionRequestAction(action)) {
-        console.log("reducer: " + numQuestions);
-        return action.payload.numQuestions;
+    if (isCloseElectionRequestAction(action)) {
+        return [];
     }
-    return numQuestions;
+    return newQuestions;
 };
 
 export const electionReducer = combineReducers({
     elections: electionsReducer,
-    numQuestions: editNumQuestionReducer
+    questions: questionReducer
 });

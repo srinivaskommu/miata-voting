@@ -3,18 +3,7 @@
     {
       "id": 100,
       "firstName": "Yason",
-      "lastName": "Khaburzaniya",
-      "email": "yason@example.com"
-    },
-    {
-      "firstName": "Yason2",
-      "lastName": "Somethig",
-      "dob": "asdf",
-      "email": "yason2@hey.com",
-      "phone": "sdf",
-      "address": "sdfdf",
-      "county": "sdf",
-      "id": 101
+      "lastName": "Khaburzaniya"
     }
   ],
   "elections": [
@@ -221,59 +210,154 @@
         }
       ],
       "id": 20
+    },
+    {
+      "name": "newFlow",
+      "questions": [],
+      "id": 21
+    },
+    {
+      "name": "newFlow",
+      "questions": [],
+      "id": 22
+    },
+    {
+      "name": "newFlow",
+      "questions": [],
+      "id": 23
+    },
+    {
+      "name": "newFlow",
+      "questions": [
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {}
+      ],
+      "id": 24
+    },
+    {
+      "name": "newFlow1",
+      "questions": [
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {
+          "id": 8,
+          "title": "fi"
+        },
+        {
+          "id": 9,
+          "title": "fi"
+        },
+        {
+          "id": 10,
+          "title": "fi"
+        },
+        {
+          "id": 11,
+          "title": "fi"
+        }
+      ],
+      "id": 25
+    },
+    {
+      "name": "newFlow12",
+      "questions": [
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {
+          "id": 8,
+          "title": "fi"
+        },
+        {
+          "id": 9,
+          "title": "fi"
+        },
+        {
+          "id": 10,
+          "title": "fi"
+        },
+        {
+          "id": 11,
+          "title": "fi"
+        },
+        {
+          "id": 12,
+          "title": "fi"
+        },
+        {
+          "id": 13,
+          "title": "fi"
+        },
+        {
+          "id": 14,
+          "title": "fi"
+        }
+      ],
+      "id": 26
+    },
+    {
+      "name": "new123",
+      "questions": [
+        {
+          "id": 0,
+          "title": "aaa"
+        },
+        {
+          "id": 1,
+          "title": "aaa"
+        },
+        {
+          "id": 2,
+          "title": "aaa"
+        },
+        {
+          "id": 3,
+          "title": "aaa"
+        }
+      ],
+      "id": 27
+    },
+    {
+      "name": "new1233",
+      "questions": [
+        {
+          "id": 0,
+          "title": "aaaa"
+        },
+        {
+          "id": 1,
+          "title": "aaaa"
+        },
+        {
+          "id": 2,
+          "title": "aaaa"
+        }
+      ],
+      "id": 28
     }
   ],
   "ballots": [
     {
+      "id": 1,
       "voterId": 100,
-      "electionId": 1,
-      "answers": [
-        {
-          "id": 1,
-          "title": "Are dogs better than cats?",
-          "answer": true
-        },
-        {
-          "id": 2,
-          "title": "Are birds smarter?",
-          "answer": false
-        }
-      ],
-      "id": 1
-    },
-    {
-      "voterId": 100,
-      "electionId": 1,
-      "answers": [
-        {
-          "id": 1,
-          "title": "Are dogs better than cats?",
-          "answer": true
-        },
-        {
-          "id": 2,
-          "title": "Are birds smarter?",
-          "answer": false
-        }
-      ],
-      "id": 2
-    },
-    {
-      "voterId": 101,
-      "electionId": 1,
-      "answers": [
-        {
-          "id": 1,
-          "title": "Are dogs better than cats?",
-          "answer": true
-        },
-        {
-          "id": 2,
-          "title": "Are birds smarter?",
-          "answer": false
-        }
-      ],
-      "id": 3
+      "electionId": 1
     }
   ],
   "ballotAnswers": [
