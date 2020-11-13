@@ -1,4 +1,4 @@
-import {Answer,  Election} from "./elections";
+import {Answer, Election} from "./elections";
 import { Voter } from "./voters";
 import { VotersSort } from "./votersStore";
 
@@ -10,15 +10,22 @@ export type BallotToolState = {
     answers: Answer[],
 }
 
+export type ElectionToolState = {
+    elections: Election[]
+    numQuestions: number
+}
+
 export type VoterToolState = {
     voters: Voter[];
     editVoterId: number;
-    isRegister:string;
-    idsToBeDeleted: number[];
+    isRegister:string;   
     votersSort: VotersSort;
   };
 
+
 export type MiataVotingState = {
+    elections: ElectionToolState,
     ballots: BallotToolState,
     votersState: VoterToolState
 }
+

@@ -1,7 +1,8 @@
+import {Item} from "./item";
 
 export type Question = {
     id: number,
-    title: string,
+    title: string
 };
 
 export type Answer = {
@@ -10,12 +11,12 @@ export type Answer = {
     answer: boolean,
 }
 
-export type Election = {
-    id: number,
+export type NewElection = {
     name: string,
     questions: Question[]
 };
 
+export type Election = NewElection & Item;
 export type Ballot = {
     id: number,
     voterId: number,

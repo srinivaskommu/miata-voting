@@ -33,7 +33,6 @@ export function VoterTableContainer() {
     return {
       voters: sortedVoters,
       editVoterId: state.votersState.editVoterId,
-      idsToBeDeleted:state.votersState.idsToBeDeleted,
       votersSort: state.votersState.votersSort,
     };
   });
