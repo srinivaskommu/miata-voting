@@ -6,8 +6,10 @@ import {
   isCancelVoterAction,
   isDeleteSelectedVoterRequestAction,
   isEditVoterAction,
+  isSortVotersAction,
   isRefreshVotersDoneAction, isSelectElectionAction, VoterActions,
 } from "../actions/votersActions";
+import { VotersSort } from "../models/votersStore";
 
 export const votersReducer: Reducer<Voter[], VoterActions> = (voters = [], action) => {
 
@@ -56,11 +58,36 @@ export const selectedDeleteReducer: Reducer<number[], VoterActions> = (voters = 
   return voters;
 };
 
+export const votersSortReducer: Reducer<VotersSort, VoterActions> = (
+  votersSort = { sortCol: "id", sortDir: "asc" },
+  action
+) => {
+  if (isSortVotersAction(action)) {
+    if (
+      votersSort.sortCol === action.payload.sortCol &&
+      votersSort.sortDir === "asc"
+    ) {
+      return {
+        sortCol: action.payload.sortCol,
+        sortDir: "desc",
+      };
+    } else {
+      return {
+        sortCol: action.payload.sortCol,
+        sortDir: "asc",
+      };
+    }
+  }
+
+  return votersSort;
+};
+
 
 
 export const voterToolReducer = combineReducers({
   voters: votersReducer,
   editVoterId: editVoterIdReducer,
   isRegister:registerSelectReducer,
-  idsToBeDeleted:selectedDeleteReducer
+  idsToBeDeleted:selectedDeleteReducer,
+  votersSort: votersSortReducer,
 });

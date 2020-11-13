@@ -321,4 +321,5 @@ export type VoterActions =
   | EditVoterAction
   | CancelVoterAction
   | SelectRegisterAction
-  | DeleteSelectedVoterRequestAction;
+  | DeleteSelectedVoterRequestAction
+  |SortVotersAction;
