@@ -18,7 +18,8 @@ const electionsReducer: Reducer<Election[], ElectionsActions> = (elections = [],
 const questionReducer: Reducer<Question[], ElectionsActions> = (questions = [], action) => {
     let newQuestions = questions;
     if (isAddQuestionRequestAction(action)) {
-        newQuestions = [...newQuestions, action.payload.question]
+        const question = {...action.payload.question, id: questions.length}
+        newQuestions = [...newQuestions, question]
     }
 
     if (isCloseElectionRequestAction(action)) {

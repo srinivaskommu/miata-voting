@@ -1,9 +1,10 @@
 import {Item} from "./item";
 
-export type Question = {
-    id: number,
+export type NewQuestion = {
     title: string
 };
+
+export type Question = NewQuestion & Item;
 
 export type Answer = {
     id: number,

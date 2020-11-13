@@ -1,5 +1,5 @@
 import {Action, AnyAction, Dispatch} from "redux";
-import {Election, NewElection, Question} from "../models/elections";
+import {Election, NewElection, NewQuestion, Question} from "../models/elections";
 
 export const REFRESH_ELECTIONS_REQUEST_ACTION = 'REFRESH_ELECTIONS_REQUEST_ACTION';
 export const REFRESH_ELECTIONS_DONE_ACTION = 'REFRESH_ELECTIONS_DONE_ACTION';
@@ -122,7 +122,7 @@ export const createCloseElectionRequestAction: CreateCloseElectionRequestAction 
 export interface AddQuestionRequestAction
     extends Action<typeof ADD_QUESTION_REQUEST_ACTION> {
     payload: {
-        question: Question;
+        question: NewQuestion;
     }
 }
 export function isAddQuestionRequestAction(
@@ -131,10 +131,10 @@ export function isAddQuestionRequestAction(
     return action.type === ADD_QUESTION_REQUEST_ACTION;
 }
 
-export type CreateAddQuestionRequestAction = (question: Question
+export type CreateAddQuestionRequestAction = (question: NewQuestion
 ) => AddQuestionRequestAction;
 
-export const createAddQuestionRequestAction: CreateAddQuestionRequestAction = (question: Question
+export const createAddQuestionRequestAction: CreateAddQuestionRequestAction = (question: NewQuestion
 ) => {
     return {
         type: ADD_QUESTION_REQUEST_ACTION,

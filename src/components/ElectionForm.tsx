@@ -1,9 +1,9 @@
 import React, {ChangeEvent, useState} from "react";
-import {NewElection, Question} from "../models/elections";
+import {NewElection, NewQuestion, Question} from "../models/elections";
 
 export type ElectionFormProps = {
     questions: Question[],
-    onAddQuestion: (question: Question) => void,
+    onAddQuestion: (question: NewQuestion) => void,
     onClose: () => void,
     onCreateElection: (newElection: NewElection) => void
 }
@@ -25,7 +25,7 @@ export function ElectionForm(props: ElectionFormProps) {
     }
 
     const addQuestion = () => {
-        const newQuestion = {id: props.questions.length,title : electionQuestionForm.question} as Question;
+        const newQuestion = {title : electionQuestionForm.question} as NewQuestion;
         props.onAddQuestion(newQuestion);
         setElectionQuestionForm({...electionQuestionForm,
             question: "",})
