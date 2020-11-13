@@ -4,6 +4,7 @@ import { Voter } from "../models/voters";
 import {
   isAppendVoterRequestAction,
   isCancelVoterAction,
+  isDeleteSelectedVoterRequestAction,
   isEditVoterAction,
   isRefreshVotersDoneAction, isSelectElectionAction, VoterActions,
 } from "../actions/votersActions";
@@ -45,11 +46,21 @@ export const registerSelectReducer: Reducer<string, VoterActions> = (
   return isRegister;
 };
 
+export const selectedDeleteReducer: Reducer<number[], VoterActions> = (voters = [], action) => {
+
+  if (isDeleteSelectedVoterRequestAction(action)) {
+    console.log(action);
+    return action.payload.idsToBeDeleted;
+  }
+
+  return voters;
+};
 
 
 
 export const voterToolReducer = combineReducers({
   voters: votersReducer,
   editVoterId: editVoterIdReducer,
-  isRegister:registerSelectReducer
+  isRegister:registerSelectReducer,
+  idsToBeDeleted:selectedDeleteReducer
 });

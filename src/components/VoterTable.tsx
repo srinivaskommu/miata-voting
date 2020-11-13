@@ -10,15 +10,18 @@ import { VoterViewRow } from "./VoterViewRow";
 export type VoterTableProps = {
   voters: Voter[];
   editVoterId: number;
+  idsToBeDeleted: number[];
   onEditVoter: (voterId: number) => void;
   onDeleteVoter: (voterId: number) => void;
   onSaveVoter: (voter: Voter) => void;
   onCancelVoter: () => void;
+  onSelectedDeleteVoter: (voterIds: number[]) => void;
 };
 
 
 export function VoterTable(props: VoterTableProps) {
   return (
+    <>
     <table id="voter-table">
       <thead>
         <tr>
@@ -65,13 +68,19 @@ export function VoterTable(props: VoterTableProps) {
             <VoterViewRow
               key={voter.id}
               voter={voter}
+              idsToBeDeleted={props.idsToBeDeleted}
               onEditVoter={props.onEditVoter}
               onDeleteVoter={props.onDeleteVoter}
+
             />
           )
         )}
       </tbody>
     </table>
+    <td>
+      <button type="button" onClick= {()=> props.onSelectedDeleteVoter(props.idsToBeDeleted)}>Delete Selected</button>
+    </td>
+    </>
   );
 }
 

@@ -8,6 +8,7 @@ import {
   createEditVoterAction,
   createCancelVoterAction,
   refreshVoters,
+  deleteSelectedVoters
 } from "../actions/votersActions";
 import { VoterTable } from "../components/VoterTable";
 import {MiataVotingState} from "../models/miataVotingStore";
@@ -17,7 +18,8 @@ export function VoterTableContainer() {
     console.log(state);
     return {
       voters: state.votersState.voters,
-      editVoterId: state.votersState.editVoterId
+      editVoterId: state.votersState.editVoterId,
+      idsToBeDeleted:state.votersState.idsToBeDeleted
     };
   });
 
@@ -37,6 +39,7 @@ export function VoterTableContainer() {
           onDeleteVoter: removeVoter,
           onEditVoter: createEditVoterAction,
           onCancelVoter: createCancelVoterAction,
+          onSelectedDeleteVoter:deleteSelectedVoters
         },
         dispatch
       ),

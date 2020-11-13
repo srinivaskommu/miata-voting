@@ -13,6 +13,7 @@ export type VoterToolState = {
     voters: Voter[];
     editVoterId: number;
     isRegister:string;
+    idsToBeDeleted: number[];
   };
 
 export type MiataVotingState = {

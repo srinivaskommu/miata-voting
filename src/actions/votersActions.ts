@@ -11,6 +11,8 @@ export const EDIT_VOTER_ACTION = "EDIT_VOTER";
 export const CANCEL_VOTER_ACTION = "CANCEL_VOTER";
 export const SELECT_REGISTER_ACTION = 'SELECT_REGISTER_ACTION';
 export const SORT_VOTERS_ACTION = "SORT_VOTERS_ACTION";
+export const DELETE_SELECTED_REQUEST_ACTION = "DELETE_SELECTED_REQUEST_ACTION";
+export const DELETE_SELECTED_REQUEST_DONE_ACTION = "DELETE_SELECTED_REQUEST_DONE_ACTION";
 
 
 export type RefreshVotersRequestAction = Action<
@@ -272,6 +274,43 @@ export const createSortVotersAction: CreateSortVotersAction = (
 };
 
 
+export interface DeleteSelectedVoterRequestAction
+  extends Action<typeof DELETE_SELECTED_REQUEST_ACTION> {
+  payload: {
+    idsToBeDeleted: number[];
+  };
+}
+
+export function isDeleteSelectedVoterRequestAction(
+  action: AnyAction
+): action is DeleteSelectedVoterRequestAction {
+  return action.type === DELETE_SELECTED_REQUEST_ACTION;
+}
+
+export type CreateDeleteSelectedVoterRequestAction = (
+  idsToBeDeleted: number[]
+) => DeleteSelectedVoterRequestAction;
+
+export const createDeleteSelectedVoterRequestAction: CreateDeleteSelectedVoterRequestAction = (
+  idsToBeDeleted
+) => {
+  return {
+    type: DELETE_SELECTED_REQUEST_ACTION,
+    payload: {
+      idsToBeDeleted,
+    },
+  };
+};
+
+export const deleteSelectedVoters = (idsToBeDeleted: number[]) => {
+  return (dispatch: Dispatch) => {
+    dispatch(createDeleteSelectedVoterRequestAction(idsToBeDeleted));
+  return  (Promise.all(idsToBeDeleted.map(id => removeVoter(id)))
+    .then(() => dispatch(createDeleteSelectedVoterRequestAction([]))));
+  };
+};
+
+
 
 export type VoterActions =
   | RefreshVotersRequestAction
@@ -281,4 +320,5 @@ export type VoterActions =
   | RemoveVoterRequestAction
   | EditVoterAction
   | CancelVoterAction
-  | SelectRegisterAction;
+  | SelectRegisterAction
+  | DeleteSelectedVoterRequestAction;
